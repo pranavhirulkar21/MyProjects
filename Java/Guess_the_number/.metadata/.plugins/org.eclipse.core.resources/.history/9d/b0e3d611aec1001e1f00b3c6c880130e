@@ -1,0 +1,25 @@
+package guess_the_number;
+
+import java.util.Scanner;
+
+public class number {
+	
+	public static void numberGuessing() {
+		Scanner sc = new Scanner(System.in);
+		int num = 1 + (int)(100 * Math.random());
+		
+		int trials = 5;
+		
+		int i, guess;
+		
+		System.out.println("A number is chosen" + " between 1 to 100." + "Guess the number" + " within 5 trials.");
+		
+	}
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+		numberGuessing();
+	}
+
+}
