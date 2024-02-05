@@ -1,0 +1,97 @@
+package com.example.saloon_version_0.activity;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.LinearLayout;
+import android.widget.Toast;
+
+
+import com.example.saloon_version_0.BaseUrl.Constant;
+import com.example.saloon_version_0.R;
+import com.example.saloon_version_0.adapter.ServicesListAdapter;
+import com.example.saloon_version_0.backendservices.CustomerService;
+import com.example.saloon_version_0.backendservices.ProductList;
+import com.example.saloon_version_0.entity.Products;
+import com.example.saloon_version_0.fragment.CartFragment;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+
+public class AMaleActivity extends AppCompatActivity
+{
+    private RecyclerView recyclerView;
+    private ServicesListAdapter servicesListAdapter;
+    private ArrayList<Products> pArrayList;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_amale);
+
+        Objects.requireNonNull(getSupportActionBar()).setTitle("Back");
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        recyclerView = findViewById(R.id.recyclerView);
+        pArrayList = new ArrayList<>();
+
+        loadServices();
+    }
+
+    private void loadServices()
+    {
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(Constant.BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        ProductList productList = retrofit.create(ProductList.class);
+        Call<ArrayList<Products>> call = productList.getAllProducts();
+
+        call.enqueue(new Callback<ArrayList<Products>>() {
+            @Override
+            public void onResponse(Call<ArrayList<Products>> call, Response<ArrayList<Products>> response)
+            {
+                if (response.isSuccessful())
+                {
+                    pArrayList = response.body();
+
+                    for (int i = 0 ; i < pArrayList.size() ; i++)
+                    {
+                       servicesListAdapter = new ServicesListAdapter(pArrayList,AMaleActivity.this);
+                       LinearLayoutManager linearLayoutManager = new LinearLayoutManager(AMaleActivity.this);
+                       recyclerView.setLayoutManager(linearLayoutManager);
+                       recyclerView.setAdapter(servicesListAdapter);
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<ArrayList<Products>> call, Throwable t)
+            {
+                Toast.makeText(AMaleActivity.this, "Fail to get data", Toast.LENGTH_SHORT).show();
+
+            }
+        });
+    }
+}
+
