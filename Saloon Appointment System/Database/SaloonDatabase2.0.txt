@@ -1,0 +1,370 @@
+*****Saloon Appointment System*****
+
+
+create database saloon;
+
+
+CREATE TABLE Customer (customer_Id INT AUTO_INCREMENT PRIMARY KEY, fullName VARCHAR(50), 
+email_Id VARCHAR(50) UNIQUE, mobileNo VARCHAR(15) UNIQUE, gender VARCHAR(10), building_No VARCHAR(50), 
+area_Name VARCHAR(50), pincode INT(10), password VARCHAR(20), enabled INT);
+
+INSERT INTO Customer VALUES (0,'Demo Demo','Demo@gamil.com','123456789','Male','312/nh','Hinjewadi 2','411057','demo',1);
+
+
+
+
+CREATE TABLE Products (product_Id VARCHAR(20) PRIMARY KEY, product_Name VARCHAR(50), 
+product_Price double, description VARCHAR(500), gender VARCHAR(10));
+
+INSERT INTO Products VALUES ('P01','Product01',100.00,'Just A Trial Version Of First Product','Male');
+
+
+
+CREATE TABLE Branch (branch_Id VARCHAR(20) PRIMARY KEY, manager_Id VARCHAR(20), 
+branch_Contact_No VARCHAR(50) UNIQUE, shop_Address VARCHAR(50), area_Name VARCHAR(50), landmark VARCHAR(50), 
+branch_Pincode INT(10), enabled INT);
+
+INSERT INTO Branch VALUES ('B01','Man_01','9988779988','mmk/23','Shivaji Chawk','Mazza 9','411057',1);
+
+
+
+
+CREATE TABLE Manager (manager_Id VARCHAR(20) PRIMARY KEY, manager_name VARCHAR(50), 
+manager_Email VARCHAR(50), manager_Password VARCHAR(50), branch_Id VARCHAR(20), enabled INT);
+
+INSERT INTO Manager VALUES ('Man_01','Expert','expert@gmail.com','expert','B01',1);
+
+
+
+
+CREATE TABLE Orders (order_Id VARCHAR(20) PRIMARY KEY, customer_Id INT, product_Id VARCHAR(20), 
+branch_Id VARCHAR(20), slot_Date date, slot_Time time , amount double);
+
+INSERT INTO Orders VALUES ('Odr_01','1','P01','B01','22/12/16','20:00',100.00);
+
+
+
+
+delete from Customer where customer_Id=1;
+
+INSERT INTO Customer VALUES 
+(1, "Pranav Hirulkar", "pranav@gamil.com", "9503682307", "Male", "312/nh", "Hinjewadi 2", "411057", "pranav", 1),
+(2, "Jayesh Baraskar", "jayesh@gamil.com", "9370056745", "Male", "112GN", "Hadapsar", "411028", "jayesh", 1),
+(3, "Rajat Wanode", "rajat@gamil.com", "7264041966", "Male", "228/oo", "Wakad", "411057", "rajat", 1),
+(4, "Nitin Kudale", "nitin@gamil.com", "1234567890", "Male", "125d", "ShivajiNagar", "411005", "nitin", 1),
+(5, "Rajiv Kamune", "rajiv@gamil.com", "1212121212", "Male", "586l", "Hinjewadi 2", "411057", "rajiv", 1),
+(6, "Samruddhi Fadanvis", "samruddhi@gamil.com", "9898989897", "Female", "41/hyg", "Akrudi", "411035", "samruddhi", 1),
+(7, "Sonal Shinde", "sonal@gamil.com", "7454745475", "Female", "456/hb", "Pimpri", "412303", "sonal", 1),
+(8, "Manjusha Nikam", "manjusha@gamil.com", "2569874569", "Female", "55fdc", "Nigdi", "411044", "manjusha", 1),
+(9, "Rohan Paramne", "rohan@gamil.com", "9686986985", "Male", "778/lrd", "Akrudi", "411035", "rohan", 1),
+(10, "Nilesh Ghule", "nilesh@gamil.com", "8569874569", "Male", "63/vcf", "Kothrud", "411038", "nilesh", 1),
+(11, "Akshita Chanchalani", "akshita@gamil.com", "6325896548", "Female", "78/rw", "Hadapsar", "411028", "akshita", 1),
+(12, "Mahesh Panhale", "mahesh@gamil.com", "7458961458", "Male", "965/aq", "ShivajiNagar", "411005", "mahesh", 1),
+(13, "Mukdha Panhale", "mukdha@gamil.com", "8569321459", "Female", "965/aq", "ShivajiNagar", "411005", "mukdha", 1),
+(14, "Sameer Dehadrai", "sameer@gamil.com", "7589648216", "Male", "222/hhy", "Balewadi", "411045", "sameer", 1),
+(15, "Devendra Dhande", "devendra@gamil.com", "9966558899", "Male", "698/khr", "Kharadi", "411014", "devendra", 1);
+
+
+
+
+delete from branch where branch_Id="B01";
+
+INSERT INTO Branch VALUES 
+("B01", "Man01", "9988779988", "mmk/23", "Hinjewadi 2", "Mazza 9", "411057", 1),
+("B02", "Man02", "6985475968", "ko/548", "Hadapsar", "Seasons Mall", "411028", 1),
+("B03", "Man03", "8547963259", "sh/32", "Kothrud", "The Cue cafe", "411035", 1),
+("B04", "Man04", "5896485231", "djc/25", "Pimpri", "Nigdi", "412303", 1),
+("B05", "Man05", "8456215963", "eif/97", "Kharadi", "Reliance Mart", "411014", 1);
+
+
+
+delete from manager where manager_Id="Man_01";
+
+INSERT INTO Manager VALUES 
+("Man01", "Pablo Escobar", "pablo@gmail.com", "pablo", "B01", 1),
+("Man02", "Thomas Shelby", "thomas@gmail.com", "thomas", "B02", 1),
+("Man03", "Indiana Jones", "indiana@gmail.com", "indiana", "B03", 1),
+("Man04", "Mavric Jones", "mavric@gmail.com", "mavric", "B04", 1),
+("Man05", "Sherloc Homes", "sherloc@gmail.com", "sherloc", "B05", 1);
+
+
+
+
+
+delete from products where product_Id="P01";
+
+INSERT INTO Products VALUES 
+("S01", "Hair Cut", 100.00, "Includes shampoo, scalp massage, cut and style","Male"),
+("S02", "Hair Cut", 500.00, "Hair is shaped and texturized to deliver the desired look and enhance face shape and highlight features. Includes shampoo, scalp massage, cut and blowdry style", "Female"),
+("S03", "Hair Color", 200.00, "Hand-in-hand with hair painting come new add-ons, like babylights and root smudges, to customize these works of art", "Male"),
+("S04", "Hair Color", 700.00, "Glossing–formerly toning–has reached fetishistic heights in the world of celebrity hair colorists, prompting your clients to expect perfect tonality and shine from every blonding service.", "Female"),
+("S05", "Keratin Smoothing", 1000.00, "Non-permanent chemical service that softens course hair allowing natural texture to remain. Keratin smoothing makes the hair much easier to blowdry and style", "Female"),
+("S06", "Japanese Smoothing", 1200.00, "Lasting up to 7 months, this method breaks and reshapes protein bonds to permanently alter the structure of the hair for long-lasting, very straight result", "Female"),
+("S07", "Head Massage", 100.00, "A head massage is a deep style massage that focuses on the head, neck and shoulders. A head massage applies a range of techniques to help reduce stress and release tension in the upper body.", "Male"),
+("C08", "Hair Cut + Hair Color", 250.00, "Your desired hair cut with coloring.", "Male"),
+("C09", "Hair Cut + Hair Color", 1000.00, "Your desired hair cut with coloring.", "Female"),
+("C10", "Complete Facial", 1000.00, "Complete care of your face with love.", "Male"),
+("C11", "Complete Facial", 1500.00, "Complete care of your face with love.", "Female"),
+("C12", "Groom Package", 7000.00, "A new and refreshed look for your special moment to make it more special", "Male"),
+("C13", "Bride Package", 10000.00, "A new and refreshed look for your special moment to make it more special", "Female");
+
+
+
+
+delete from orders where order_Id="Odr_01";
+
+INSERT INTO Orders VALUES 
+("Order001", 1, "S01", "B01", "22/12/16", "12:00", 100.00),
+("Order002", 5, "S07", "B01", "22/12/16", "18:00", 100.00),
+("Order003", 8, "S01", "B04", "22/12/17", "21:00", 100.00),
+("Order004", 5, "S01", "B01", "22/12/17", "12:00", 100.00),
+("Order005", 7, "C11", "B04", "22/12/17", "15:00", 1500.00),
+("Order006", 3, "S07", "B04", "22/12/18", "12:00", 100.00),
+("Order007", 14, "C12", "B01", "22/12/18", "21:00", 7000.00),
+("Order008", 12, "S01", "B02", "22/12/19", "18:00", 100.00),
+("Order009", 2, "C10", "B02", "22/12/19", "15:00", 1000.00),
+("Order010", 7, "S06", "B04", "22/12/20", "18:00", 1200.00),
+("Order011", 10, "S03", "B03", "22/12/20", "15:00", 200.00),
+("Order012", 10, "C10", "B03", "22/12/21", "12:00", 1000.00),
+("Order013", 13, "C09", "B02", "22/12/21", "21:00", 1000.00),
+("Order014", 4, "S01", "B03", "22/12/21", "18:00", 100.00),
+("Order015", 9, "S07", "B04", "22/12/22", "15:00", 100.00),
+("Order016", 15, "C12", "B05", "22/12/23", "18:00", 7000.00),
+("Order017", 14, "C08", "B01", "22/12/24", "15:00", 250.00),
+("Order018", 8, "S05", "B04", "22/12/27", "15:00", 1000.00),
+("Order019", 6, "C09", "B04", "22/12/28", "12:00", 1000.00),
+("Order020", 11, "C11", "B02", "22/12/28", "21:00", 1500.00);
+
+
+
+alter table products drop column description;
+
+delete from products;
+
+
+INSERT INTO products VALUES 
+("A01", "Male", "Hair Cutting", "200.00"),
+("A02", "Male", "Change Of Styling", "300.00"),
+("A03", "Male", "Head Message", 100),
+("A04", "Male", "Beard Designing", 150),
+("A05", "Male", "Beard Trimming", 100),
+("A06", "Male", "Face Shave", 150),
+("A07", "Male", "Head Shave", 150),
+("A08", "Male", "Shampoo and Conditioning", 100),
+("A09", "Male", "Hair Oil Message", 100),
+("B01", "Male", "Hair Spa", 300),
+("B02", "Male", "Hair Treatment", 1000),
+("B03", "Male", "Hair Spa Anti-dandruff/HairFall", 1500),
+("C01", "Male", "Hair Straightning/Smoothing", 2000),
+("C02", "Male", "Keratin Treatment", 3000),
+("D01", "Male", "Groom Facial", 5000),
+("D02", "Male", "Vitamin C Facial", 3000),
+("D03", "Male", "Charcoal Facial", 2500),
+("D04", "Male", "Pure Gold Facial", 2300),
+("D05", "Male", "Tan Luminous Facial", 1800),
+("D06", "Male", "Anti Aging Facial", 1500),
+("D07", "Male", "Brightening Mask", 1200),
+("D08", "Male", "Golden Glow Mask", 1000),
+("D09", "Male", "Under Eye Treatment", 800),
+("E01", "Male", "Body Scrub Men", 2000),
+("E02", "Male", "Body Detan", 2500),
+("E03", "Male", "Body Polishing", 3000),
+("E04", "Male", "Body Reflexology", 4000),
+("E05", "Male", "Neck And Shoulder Message", 500),
+("F01", "Male", "Groom MakeUp(Premium)", 7000),
+("F02", "Male", "Groom MakeUp(Standard)", 5000),
+("G01", "Male", "Face and Neck Bleach", 400),
+("G02", "Male", "Full Arms Bleach", 500),
+("G03", "Male", "Half Arms Bleach", 300),
+("G04", "Male", "Half Legs Bleach", 300),
+("G05", "Male", "Full Legs Bleach", 500),
+("G06", "Male", "Feet Bleach", 200),
+("G07", "Male", "Full Body Bleach", 2000),
+("H01", "Male", "Basic Manicure", 300),
+("H02", "Male", "Basic Pedicure", 350),
+("H03", "Male", "Standard Manicure", 400),
+("H04", "Male", "Standard Pedicure", 450),
+("H05", "Male", "Premium Manicure", 500),
+("H06", "Male", "Premium Pedicure", 550),
+("H07", "Male", "Waterless Manicure/Pedicure", 200),
+("H08", "Male", "Heel Peel Treatment", 1000),
+("I01", "Male", "Hair color", 200),
+("I02", "Male", "Bread Color", 150),
+("I03", "Male", "Fashion Hair Color", 500),
+("L01", "Female", "Hair Cutting", 400),
+("L02", "Female", "Change Of Styling", 600),
+("L03", "Female", "Hair Spa", 500),
+("L04", "Female", "Hair oil message", 200),
+("L05", "Female", "Shampoo and Conditioning", 200),
+("L06", "Female", "Hair color", 500),
+("M01", "Female", "Head Message", 300),
+("M02", "Female", "Foot Message", 400),
+("M03", "Female", "Body Message", 2000),
+("M04", "Female", "Body Scrub", 1500),
+("M05", "Female", "Body Polishing", 4000),
+("N01", "Female", "Hair Iron", 800),
+("N02", "Female", "Hair Curling", 1000),
+("N03", "Female", "Blowing Dry", 300),
+("O01", "Female", "Gold Facial", 600),
+("O02", "Female", "Diamond Facial", 600),
+("O03", "Female", "Lemon Facial", 800),
+("O04", "Female", "Apple Facial", 600),
+("O05", "Female", "Thermo Facial", 800),
+("O06", "Female", "Fruit Facial", 500),
+("P01", "Female", "Full Arms Bleach", 300),
+("P02", "Female", "Full Legs Bleach", 500),
+("P03", "Female", "Half Legs Bleach", 300),
+("P04", "Female", "Face Bleach", 300),
+("P05", "Female", "Face And Neck Bleach", 200),
+("P06", "Female", "Feet Bleach", 200),
+("P07", "Female", "Full Body Bleach", 2000),
+("Q01", "Female", "Full Arms Waxing", 250),
+("Q02", "Female", "Half Arms Waxing", 150),
+("Q03", "Female", "Full Legs Waxing", 350),
+("Q04", "Female", "Half Legs Waxing", 200),
+("Q05", "Female", "Underarms Waxing", 100),
+("Q06", "Female", "Stomach Waxing", 200),
+("Q07", "Female", "Full Body Waxing", 1000),
+("R01", "Female", "Eyebrow Threading", 50),
+("R02", "Female", "ForeHead Threading", 50),
+("R03", "Female", "UpperLips Threading", 50),
+("R04", "Female", "Chin Threading", 50),
+("R05", "Female", "Full Face Threading", 200),
+("S01", "Female", "Normal Manicure", 200),
+("S02", "Female", "Spa Manicure", 300),
+("S03", "Female", "Polishing Manicure", 500),
+("S04", "Female", "Normal Pedicure", 300),
+("S05", "Female", "Spa Pedicure", 450),
+("S06", "Female", "Polishing Pedicure", 600),
+("T01", "Female", "Light MakeUp", 1500),
+("T02", "Female", "Party MakeUp", 3000),
+("T03", "Female", "Bridal Makeup", 10000),
+("U01", "Female", "Hand Mehandi", 100),
+("U02", "Female", "Leg Mehandi", 200),
+("U03", "Female", "Marriage Mehandi", 500);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+INSERT INTO products VALUES 
+("A01", "Male", 200.00, "Hair Cutting"),
+("A02", "Male", 300.00, "Change Of Styling"),
+("A03", "Male", 100, "Head Message"),
+("A04", "Male", 150, "Beard Designing"),
+("A05", "Male", 100, "Beard Trimming"),
+("A06", "Male", 150, "Face Shave"),
+("A07", "Male", 150, "Head Shave"),
+("A08", "Male", 100, "Shampoo and Conditioning"),
+("A09", "Male", 100, "Hair Oil Message"),
+("B01", "Male", 300, "Hair Spa"),
+("B02", "Male", 1000, "Hair Treatment"),
+("B03", "Male", 1500, "Hair Spa Anti-dandruff/HairFall"),
+("C01", "Male", 2000, "Hair Straightning/Smoothing"),
+("C02", "Male", 3000, "Keratin Treatment"),
+("D01", "Male", 5000, "Groom Facial"),
+("D02", "Male", 3000, "Vitamin C Facial"),
+("D03", "Male", 2500, "Charcoal Facial"),
+("D04", "Male", 2300, "Pure Gold Facial"),
+("D05", "Male", 1800, "Tan Luminous Facial"),
+("D06", "Male", 1500, "Anti Aging Facial"),
+("D07", "Male", 1200, "Brightening Mask"),
+("D08", "Male", 1000, "Golden Glow Mask"),
+("D09", "Male", 800, "Under Eye Treatment"),
+("E01", "Male", 2000, "Body Scrub Men"),
+("E02", "Male", 2500, "Body Detan"),
+("E03", "Male", 3000, "Body Polishing"),
+("E04", "Male", 4000, "Body Reflexology"),
+("E05", "Male", 500, "Neck And Shoulder Message"),
+("F01", "Male", 7000, "Groom MakeUp(Premium)"),
+("F02", "Male", 5000, "Groom MakeUp(Standard)"),
+("G01", "Male", 400, "Face and Neck Bleach"),
+("G02", "Male", 500, "Full Arms Bleach"),
+("G03", "Male", 300, "Half Arms Bleach"),
+("G04", "Male", 300, "Half Legs Bleach"),
+("G05", "Male", 500, "Full Legs Bleach"),
+("G06", "Male", 200, "Feet Bleach"),
+("G07", "Male", 2000, "Full Body Bleach"),
+("H01", "Male", 300, "Basic Manicure"),
+("H02", "Male", 350, "Basic Pedicure"),
+("H03", "Male", 400, "Standard Manicure"),
+("H04", "Male", 450, "Standard Pedicure"),
+("H05", "Male", 500, "Premium Manicure"),
+("H06", "Male", 550, "Premium Pedicure"),
+("H07", "Male", 200, "Waterless Manicure/Pedicure"),
+("H08", "Male", 1000, "Heel Peel Treatment"),
+("I01", "Male", 200, "Hair color"),
+("I02", "Male", 150, "Bread Color"),
+("I03", "Male", 500, "Fashion Hair Color"),
+("L01", "Female", 400, "Hair Cutting"),
+("L02", "Female", 600, "Change Of Styling"),
+("L03", "Female", 500, "Hair Spa"),
+("L04", "Female", 200, "Hair oil message"),
+("L05", "Female", 200, "Shampoo and Conditioning"),
+("L06", "Female", 500, "Hair color"),
+("M01", "Female", 300, "Head Message"),
+("M02", "Female", 400, "Foot Message"),
+("M03", "Female", 2000, "Body Message"),
+("M04", "Female", 1500, "Body Scrub"),
+("M05", "Female", 4000, "Body Polishing"),
+("N01", "Female", 800, "Hair Iron"),
+("N02", "Female", 1000, "Hair Curling"),
+("N03", "Female", 300, "Blowing Dry"),
+("O01", "Female", 600, "Gold Facial"),
+("O02", "Female", 600, "Diamond Facial"),
+("O03", "Female", 800, "Lemon Facial"),
+("O04", "Female", 600, "Apple Facial"),
+("O05", "Female", 800, "Thermo Facial"),
+("O06", "Female", 500, "Fruit Facial"),
+("P01", "Female", 300, "Full Arms Bleach"),
+("P02", "Female", 500, "Full Legs Bleach"),
+("P03", "Female", 300, "Half Legs Bleach"),
+("P04", "Female", 300, "Face Bleach"),
+("P05", "Female", 200, "Face And Neck Bleach"),
+("P06", "Female", 200, "Feet Bleach"),
+("P07", "Female", 2000, "Full Body Bleach"),
+("Q01", "Female", 250, "Full Arms Waxing"),
+("Q02", "Female", 150, "Half Arms Waxing"),
+("Q03", "Female", 350, "Full Legs Waxing"),
+("Q04", "Female", 200, "Half Legs Waxing"),
+("Q05", "Female", 100, "Underarms Waxing"),
+("Q06", "Female", 200, "Stomach Waxing"),
+("Q07", "Female", 1000, "Full Body Waxing"),
+("R01", "Female", "Eyebrow Threading", 50),
+("R02", "Female", 50, "ForeHead Threading"),
+("R03", "Female", 50, "UpperLips Threading"),
+("R04", "Female", 50, "Chin Threading"),
+("R05", "Female", 200, "Full Face Threading"),
+("S01", "Female", 200, "Normal Manicure"),
+("S02", "Female", 300, "Spa Manicure"),
+("S03", "Female", 500, "Polishing Manicure"),
+("S04", "Female", 300, "Normal Pedicure"),
+("S05", "Female", 450, "Spa Pedicure"),
+("S06", "Female", 600, "Polishing Pedicure"),
+("T01", "Female", 1500, "Light MakeUp"),
+("T02", "Female", 3000, "Party MakeUp"),
+("T03", "Female", 10000, "Bridal Makeup"),
+("U01", "Female", 100, "Hand Mehandi"),
+("U02", "Female", 200, "Leg Mehandi"),
+("U03", "Female", 500, "Marriage Mehandi");

@@ -1,0 +1,11 @@
+*****MYSQL******
+
+mysql -u root -pmanager
+
+show databases;
+
+use saloon;
+
+show tables;
+
+select * from customers;
